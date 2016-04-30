@@ -1,8 +1,38 @@
 ﻿<Window x:Class="DS3Backup.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:local="clr-namespace:DS3Backup"
+        Visibility="{Binding Visibility, Mode=TwoWay}"
+        Title="DS3 Backup" Icon="DarkSoulsIII.ico" Height="350" Width="525">
+    <Window.Resources>
+        <local:BindingProxy x:Key="proxy" Data="{Binding}" />
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <tb:TaskbarIcon MenuActivation="RightClick" IconSource="pack://application:,,,/DarkSoulsIII.ico" ToolTipText="{Binding LastUpdatedString}"
+                        LeftClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource proxy}}"
+                        DoubleClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource proxy}}">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Exit" Command="{Binding Path=Data.ExitCommand, Source={StaticResource proxy}}" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding BackupLocations}" SelectedItem="{Binding SelectedLocation}" IsReadOnly="True" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Add Location" Command="{Binding AddLocationCommand}" />
+        <Button Grid.Row="1" Grid.Column="1" Content="Remove Location" Command="{Binding RemoveLocationCommand}" />
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Backup" Command="{Binding BackupCommand}" />
     </Grid>
 </Window>

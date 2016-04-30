@@ -20,9 +20,26 @@ namespace DS3Backup
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainWindowViewModel vm;
+
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
+
+            vm = mainWindowViewModel;
+            vm.CloseAction = Close;
+            DataContext = vm;
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            if (!vm.AllowExit)
+            {
+                e.Cancel = true;
+                vm.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -13,5 +13,12 @@ namespace DS3Backup
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var vm = new MainWindowViewModel(e.Args.Contains("-hide"));
+            new MainWindow(vm).Show();
+        }
     }
 }
