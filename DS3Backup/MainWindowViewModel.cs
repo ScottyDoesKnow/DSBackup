@@ -69,17 +69,6 @@ namespace DS3Backup
         }
         private BackupLocation _SelectedLocation = null;
 
-        public string LastBackupString
-        {
-            get { return _LastBackupString; }
-            set
-            {
-                _LastBackupString = value;
-                OnPropertyChanged("LastBackupString");
-            }
-        }
-        private string _LastBackupString = string.Empty;
-
         public Visibility Visibility
         {
             get { return _Visibility; }
