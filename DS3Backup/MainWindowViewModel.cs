@@ -23,7 +23,8 @@ namespace DS3Backup
         private static readonly int BACKUP_RATE = 15 * 60 * 1000;
         private static readonly int NUM_BACKUPS = 10;
 
-        private static string SETTINGS_PATH = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ds3backup.settings");
+        private static string SETTINGS_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DS3Backup");
+        private static string SETTINGS_PATH = Path.Combine(SETTINGS_DIR, "ds3backup.settings");
         private static readonly string SAVES_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DarkSoulsIII");
 
         #region Commands
@@ -199,6 +200,9 @@ namespace DS3Backup
 
         private void SaveSettings()
         {
+            if (!Directory.Exists(SETTINGS_DIR))
+                Directory.CreateDirectory(SETTINGS_DIR);
+
             File.WriteAllText(SETTINGS_PATH, XmlHelper.ToXML(BackupLocations.ToList()));
         }
 
