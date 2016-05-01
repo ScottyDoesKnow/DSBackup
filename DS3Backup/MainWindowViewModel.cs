@@ -126,21 +126,25 @@ namespace DS3Backup
         private void Backup(BackupLocation location, string saveDirectory)
         {
             string dirName = Path.GetFileName(saveDirectory);
-            List<string> existingDirs = Directory.GetDirectories(location.Directory).Where(x => x.StartsWith(dirName) && x.Length == SAVE_DIR_LENGTH + SEPARATOR.Length + DATETIME_PATTERN.Length).ToList(); // TODO Ugly
-            existingDirs.Sort();
-
-            while (existingDirs.Count >= NUM_BACKUPS)
+            List<string> existingDirs = Directory.GetDirectories(location.Directory).Where(x =>
             {
-                Directory.Delete(existingDirs.First(), true);
-                existingDirs.RemoveAt(0);
-            }
+                string xName = Path.GetFileName(x);
+                return xName.StartsWith(dirName) && xName.Length == SAVE_DIR_LENGTH + SEPARATOR.Length + DATETIME_PATTERN.Length;
+            }).ToList(); // TODO Ugly
+            existingDirs.Sort();
 
             DateTime? modified = GetModifiedDate(saveDirectory);
             if (!modified.HasValue)
                 throw new Exception(); // TODO Ugly
 
-            if (modified.Value != location.LastBackup)
+            if (!modified.Value.Equals(location.LastBackup))
             {
+                while (existingDirs.Count >= NUM_BACKUPS)
+                {
+                    Directory.Delete(existingDirs.First(), true);
+                    existingDirs.RemoveAt(0);
+                }
+
                 DirectoryCopy(saveDirectory, Path.Combine(location.Directory, dirName + " - " + modified.Value.ToString(DATETIME_PATTERN)), true);
                 location.LastBackup = modified.Value;
                 location.Accessible = true;
