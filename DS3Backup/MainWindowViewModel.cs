@@ -20,7 +20,7 @@ namespace DS3Backup
         private static readonly string DATETIME_PATTERN = "yyyy-mm-dd-HHMM";
         private static readonly string SEPARATOR = " - ";
 
-        private static readonly int BACKUP_RATE = 15 * 60 * 1000;
+        private static readonly int BACKUP_RATE = 1000; //15 * 60 * 1000;
         private static readonly int NUM_BACKUPS = 10;
 
         private static string SETTINGS_PATH = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ds3backup.settings");
@@ -120,7 +120,11 @@ namespace DS3Backup
 
                     SaveSettings();
                 }
-                catch (Exception) { location.Accessible = false; }
+                catch (Exception ex)
+                {
+                    location.Accessible = false;
+                    MessageBox.Show("Error making backup. The location that caused the error will show as inaccessible. " + ex.Message, "DS3 Backup", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
         }
 
         private void Backup(BackupLocation location, string saveDirectory)
@@ -139,15 +143,19 @@ namespace DS3Backup
 
             if (!modified.Value.Equals(location.LastBackup))
             {
-                while (existingDirs.Count >= NUM_BACKUPS)
+                string newDirectory = Path.Combine(location.Directory, dirName + " - " + modified.Value.ToString(DATETIME_PATTERN));
+                if (!Directory.Exists(newDirectory))
                 {
-                    Directory.Delete(existingDirs.First(), true);
-                    existingDirs.RemoveAt(0);
-                }
+                    while (existingDirs.Count >= NUM_BACKUPS)
+                    {
+                        Directory.Delete(existingDirs.First(), true);
+                        existingDirs.RemoveAt(0);
+                    }
 
-                DirectoryCopy(saveDirectory, Path.Combine(location.Directory, dirName + " - " + modified.Value.ToString(DATETIME_PATTERN)), true);
-                location.LastBackup = modified.Value;
-                location.Accessible = true;
+                    DirectoryCopy(saveDirectory, newDirectory, true);
+                    location.LastBackup = modified.Value;
+                    location.Accessible = true;
+                }
             }
         }
 
