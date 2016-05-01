@@ -17,7 +17,7 @@ namespace DS3Backup
     public class MainWindowViewModel : ViewModel
     {
         private static readonly int SAVE_DIR_LENGTH = 16; // TODO Ugly
-        private static readonly string DATETIME_PATTERN = "yyyy-mm-dd-HHMM";
+        private static readonly string DATETIME_PATTERN = "yyyy-MM-dd-HHmm";
         private static readonly string SEPARATOR = " - ";
 
         private static readonly int BACKUP_RATE = 15 * 60 * 1000;
