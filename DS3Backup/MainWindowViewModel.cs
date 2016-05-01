@@ -20,7 +20,7 @@ namespace DS3Backup
         private static readonly string DATETIME_PATTERN = "yyyy-mm-dd-HHMM";
         private static readonly string SEPARATOR = " - ";
 
-        private static readonly int BACKUP_RATE = 1000; //15 * 60 * 1000;
+        private static readonly int BACKUP_RATE = 15 * 60 * 1000;
         private static readonly int NUM_BACKUPS = 10;
 
         private static string SETTINGS_PATH = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ds3backup.settings");
