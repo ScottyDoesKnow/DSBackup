@@ -25,6 +25,7 @@ namespace DS3Backup
 
         private static string SETTINGS_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DS3Backup");
         private static string SETTINGS_PATH = Path.Combine(SETTINGS_DIR, "ds3backup.settings");
+        private static string SETTINGS_PATH_BAK = SETTINGS_PATH + ".bak";
         private static readonly string SAVES_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DarkSoulsIII");
 
         #region Commands
@@ -202,6 +203,9 @@ namespace DS3Backup
         {
             if (!Directory.Exists(SETTINGS_DIR))
                 Directory.CreateDirectory(SETTINGS_DIR);
+
+            if (File.Exists(SETTINGS_PATH))
+                File.Copy(SETTINGS_PATH, SETTINGS_PATH_BAK, true);
 
             File.WriteAllText(SETTINGS_PATH, XmlHelper.ToXML(BackupLocations.ToList()));
         }
