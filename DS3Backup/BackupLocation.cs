@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS3Backup
+namespace DSBackup
 {
     [Serializable]
     public class BackupLocation : ViewModel

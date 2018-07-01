@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS3Backup", "DS3Backup\DS3Backup.csproj", "{47BB7F23-CF26-4CDF-BD93-A997234189F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSBackup", "DS3Backup\DSBackup.csproj", "{47BB7F23-CF26-4CDF-BD93-A997234189F3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DS3BackupSetup", "DS3BackupSetup\DS3BackupSetup.vdproj", "{A07E3ED5-B48B-4329-8F77-97052DA3E678}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DSBackupSetup", "DS3BackupSetup\DS3BackupSetup.vdproj", "{A07E3ED5-B48B-4329-8F77-97052DA3E678}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,5 +22,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3415D29-053E-46B4-83EC-A48F129D9920}
 	EndGlobalSection
 EndGlobal

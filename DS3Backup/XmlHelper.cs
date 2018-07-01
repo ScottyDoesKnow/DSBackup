@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DS3Backup
+namespace DSBackup
 {
     public static class XmlHelper
     {

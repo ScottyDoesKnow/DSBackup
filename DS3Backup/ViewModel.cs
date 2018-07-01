@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace DS3Backup
+namespace DSBackup
 {
     public class ViewModel : INotifyPropertyChanged
     {

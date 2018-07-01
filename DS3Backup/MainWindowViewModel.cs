@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DS3Backup
+namespace DSBackup
 {
     public class MainWindowViewModel : ViewModel
     {
@@ -26,7 +26,15 @@ namespace DS3Backup
         private static string SETTINGS_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DS3Backup");
         private static string SETTINGS_PATH = Path.Combine(SETTINGS_DIR, "ds3backup.settings");
         private static string SETTINGS_PATH_BAK = SETTINGS_PATH + ".bak";
-        private static readonly string SAVES_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DarkSoulsIII");
+        private static readonly List<string> DEFAULT_PATHS = new List<string>();
+
+        static MainWindowViewModel()
+        {
+            DEFAULT_PATHS.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "NBGI", "DarkSouls"));
+            DEFAULT_PATHS.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DarkSoulsII"));
+            DEFAULT_PATHS.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DarkSoulsIII"));
+            DEFAULT_PATHS.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "NBGI", "DARK SOULS REMASTERED"));
+        }
 
         #region Commands
 
@@ -117,16 +125,17 @@ namespace DS3Backup
                     }
 
                     if (Directory.Exists(location.Directory))
-                        foreach (string saveDirectory in GetSaveDirectories(SAVES_PATH))
+                        foreach (string saveDirectory in GetSaveDirectories(location.Directory))
                             Backup(location, saveDirectory);
-
-                    SaveSettings();
                 }
                 catch (Exception ex)
                 {
                     location.Accessible = false;
                     MessageBox.Show("Error making backup. The location that caused the error will show as inaccessible. " + ex.Message, "DS3 Backup", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+            try { SaveSettings(); }
+            catch { }
         }
 
         private void Backup(BackupLocation location, string saveDirectory)
@@ -158,6 +167,21 @@ namespace DS3Backup
                     location.LastBackup = modified.Value;
                     location.Accessible = true;
                 }
+                else
+                {
+                    location.LastBackup = modified.Value;
+                    try
+                    {
+                        string testPath = Path.Combine(location.Directory, "accessibilityTest.txt");
+                        File.WriteAllText(testPath, "DSBackup Accessibility Test");
+                        location.Accessible = true;
+                        File.Delete(testPath);
+                    }
+                    catch
+                    {
+                        location.Accessible = false;
+                    }
+                }
             }
         }
 
@@ -166,7 +190,9 @@ namespace DS3Backup
             foreach (string directory in Directory.GetDirectories(path))
             {
                 string dirName = Path.GetFileName(directory);
-                if (dirName.Length == 16)
+                if (dirName.Length == 8 // Dark Souls
+                    || dirName.Length == 16 // Dark Souls 2/3
+                    || dirName.Length == 7) // Dark Souls Remastered
                     yield return directory;
             }
         }
@@ -213,7 +239,10 @@ namespace DS3Backup
         private void LoadSettings()
         {
             if (!File.Exists(SETTINGS_PATH))
-                BackupLocations.Add(new BackupLocation(SAVES_PATH));
+            {
+                foreach (var defaultPath in DEFAULT_PATHS)
+                    BackupLocations.Add(new BackupLocation(defaultPath));
+            }
             else
                 BackupLocations = new ObservableCollection<BackupLocation>(XmlHelper.FromXML<List<BackupLocation>>(File.ReadAllText(SETTINGS_PATH)));
         }
