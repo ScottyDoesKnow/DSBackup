@@ -16,7 +16,7 @@ namespace DSBackup
 {
     public class MainWindowViewModel : ViewModel
     {
-        private static readonly int SAVE_DIR_LENGTH = 16; // TODO Ugly
+        private static readonly int[] SAVE_DIR_LENGTHS = { 7, 8, 16 };
         private static readonly string DATETIME_PATTERN = "yyyy-MM-dd-HHmm";
         private static readonly string SEPARATOR = " - ";
 
@@ -144,7 +144,7 @@ namespace DSBackup
             List<string> existingDirs = Directory.GetDirectories(location.Directory).Where(x =>
             {
                 string xName = Path.GetFileName(x);
-                return xName.StartsWith(dirName) && xName.Length == SAVE_DIR_LENGTH + SEPARATOR.Length + DATETIME_PATTERN.Length;
+                return xName.StartsWith(dirName) && SAVE_DIR_LENGTHS.Contains(xName.Length + SEPARATOR.Length + DATETIME_PATTERN.Length);
             }).ToList(); // TODO Ugly
             existingDirs.Sort();
 
@@ -190,9 +190,7 @@ namespace DSBackup
             foreach (string directory in Directory.GetDirectories(path))
             {
                 string dirName = Path.GetFileName(directory);
-                if (dirName.Length == 8 // Dark Souls
-                    || dirName.Length == 16 // Dark Souls 2/3
-                    || dirName.Length == 7) // Dark Souls Remastered
+                if (SAVE_DIR_LENGTHS.Contains(dirName.Length))
                     yield return directory;
             }
         }
