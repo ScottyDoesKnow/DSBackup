@@ -144,13 +144,13 @@ namespace DSBackup
             List<string> existingDirs = Directory.GetDirectories(location.Directory).Where(x =>
             {
                 string xName = Path.GetFileName(x);
-                return xName.StartsWith(dirName) && SAVE_DIR_LENGTHS.Contains(xName.Length + SEPARATOR.Length + DATETIME_PATTERN.Length);
-            }).ToList(); // TODO Ugly
+                return xName.StartsWith(dirName) && SAVE_DIR_LENGTHS.Contains(xName.Length - SEPARATOR.Length - DATETIME_PATTERN.Length);
+            }).ToList();
             existingDirs.Sort();
 
             DateTime? modified = GetModifiedDate(saveDirectory);
             if (!modified.HasValue)
-                throw new Exception(); // TODO Ugly
+                throw new Exception("Encountered multiple saves in single save directory.");
 
             if (!modified.Value.Equals(location.LastBackup))
             {

@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <tb:TaskbarIcon MenuActivation="RightClick" IconSource="pack://application:,,,/DarkSouls.ico" ToolTipText="DS3 Backup"
+        <tb:TaskbarIcon MenuActivation="RightClick" IconSource="pack://application:,,,/DarkSouls.ico" ToolTipText="DS Backup"
                         LeftClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource proxy}}"
                         DoubleClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource proxy}}">
             <tb:TaskbarIcon.ContextMenu>
