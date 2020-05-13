@@ -15,10 +15,18 @@ namespace DSBackup
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            try
+            {
+                base.OnStartup(e);
 
-            var vm = new MainWindowViewModel(e.Args.Contains("-hide"));
-            new MainWindow(vm).Show();
+                var vm = new MainWindowViewModel(e.Args.Contains("-hide"));
+                new MainWindow(vm).Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Current.Shutdown(); // Why is this needed??
+            }
         }
     }
 }
