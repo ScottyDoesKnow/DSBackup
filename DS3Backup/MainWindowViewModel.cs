@@ -16,7 +16,7 @@ namespace DSBackup
 {
     public class MainWindowViewModel : ViewModel
     {
-        private static readonly int[] SAVE_DIR_LENGTHS = { 7, 8, 16 };
+        private static readonly int[] SAVE_DIR_LENGTHS = { 7, 8, 16, 17 };
         private static readonly string DATETIME_PATTERN = "yyyy-MM-dd-HHmm";
         private static readonly string SEPARATOR = " - ";
 
