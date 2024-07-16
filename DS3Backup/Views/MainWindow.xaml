@@ -1,0 +1,58 @@
+﻿<Window x:Class="Net.ScottyDoesKnow.DsBackup.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:views="clr-namespace:Net.ScottyDoesKnow.DsBackup.Views"
+        xmlns:viewModels="clr-namespace:Net.ScottyDoesKnow.DsBackup.ViewModels"
+        Visibility="{Binding Visibility, Mode=TwoWay}"
+        Title="{Binding ApplicationName}" Icon="../EldenRing.ico" Height="300" Width="900" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}">
+    <Window.Resources>
+        <views:MainWindowViewModelBindingProxy x:Key="Proxy" Data="{Binding}" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <tb:TaskbarIcon MenuActivation="RightClick" IconSource="pack://application:,,,/EldenRing.ico" ToolTipText="{Binding ApplicationName}"
+                        LeftClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource Proxy}}"
+                        DoubleClickCommand="{Binding Path=Data.ShowWindowCommand, Source={StaticResource Proxy}}">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Exit" Command="{Binding Path=Data.ExitCommand, Source={StaticResource Proxy}}" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" CanUserAddRows="False"
+                  ItemsSource="{Binding BackupLocations}" SelectedItem="{Binding SelectedLocation}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Save Directory" Binding="{Binding Directory}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Last Backup" Binding="{Binding LastBackup}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Backup Directory" Binding="{Binding BackupDirectory}" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="...">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="..." Command="{Binding Data.SetBackupDirectoryCommand, Source={StaticResource Proxy}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn Header="Accessible" Binding="{Binding Accessible}" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" Grid.Column="0" Content="Add Location" Command="{Binding AddLocationCommand}" />
+        <Button Grid.Row="1" Grid.Column="1" Content="Remove Location" Command="{Binding RemoveLocationCommand}" />
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Backup" Command="{Binding BackupCommand}" />
+    </Grid>
+</Window>

@@ -15,19 +15,19 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_453AAC258CC0CEA86F6435DA0B96E609"
+        "OwnerKey" = "8:_5048F43360604846B541CB345EFD4E41"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5048F43360604846B541CB345EFD4E41"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6C6B647FC3820C1EEB15AD9FF62A667A"
-        "OwnerKey" = "8:_5048F43360604846B541CB345EFD4E41"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D80286940D61BA4ACBAB1A0F0476E837"
+        "MsmKey" = "8:_F9B718428E301756366B399F39A00045"
         "OwnerKey" = "8:_5048F43360604846B541CB345EFD4E41"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,13 +40,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D80286940D61BA4ACBAB1A0F0476E837"
+        "OwnerKey" = "8:_F9B718428E301756366B399F39A00045"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6C6B647FC3820C1EEB15AD9FF62A667A"
+        "OwnerKey" = "8:_453AAC258CC0CEA86F6435DA0B96E609"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -108,10 +108,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
                     }
                 }
             }
@@ -132,27 +132,19 @@
         {
             "LaunchCondition"
             {
-                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_7A8BC4B25E424148B17A2C99E7156279"
-                {
-                "Name" = "8:.NET Framework"
-                "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
-                "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
-                }
             }
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6C6B647FC3820C1EEB15AD9FF62A667A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_453AAC258CC0CEA86F6435DA0B96E609"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Ookii.Dialogs.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                 }
-            "SourcePath" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
+            "SourcePath" = "8:Ookii.Dialogs.Wpf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AAF10D5E5603413CA8A457981B96037A"
@@ -170,15 +162,15 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D80286940D61BA4ACBAB1A0F0476E837"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F9B718428E301756366B399F39A00045"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Hardcodet.NotifyIcon.Wpf, Version=1.1.0.0, Culture=neutral, PublicKeyToken=682384a853a08aad, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                 }
-            "SourcePath" = "8:Ookii.Dialogs.Wpf.dll"
+            "SourcePath" = "8:Hardcodet.NotifyIcon.Wpf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AAF10D5E5603413CA8A457981B96037A"
@@ -215,7 +207,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_AAF10D5E5603413CA8A457981B96037A"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]DSBackup"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -262,27 +254,27 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:DS Backup"
-        "ProductCode" = "8:{913B16E8-8C1D-430A-9BC9-2A587727BE83}"
-        "PackageCode" = "8:{8A30ADB4-55BF-4670-9A5A-B0AE77D9056B}"
+        "ProductName" = "8:Dark Souls Save Backup Tool"
+        "ProductCode" = "8:{D74942F7-1D06-4D02-A431-EDA71CC3B270}"
+        "PackageCode" = "8:{C00828FA-2D8C-4316-B851-445744B48A14}"
         "UpgradeCode" = "8:{0DF59207-9F3C-4589-8D12-8C8FF3A36C78}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.20"
+        "ProductVersion" = "8:1.0.26"
         "Manufacturer" = "8:ScottyDoesKnow"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:DS Backup Setup"
+        "Title" = "8:Dark Souls Save Backup Tool Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:ScottyDoesKnow"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:https://github.com/ScottyDoesKnow/DS3Backup"
-        "ARPPRODUCTICON" = "8:"
-        "ARPIconIndex" = "3:0"
+        "ARPPRODUCTICON" = "8:_5048F43360604846B541CB345EFD4E41"
+        "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
@@ -386,7 +378,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4B3BC3CA46B0452895F7BACAB3178FE8"
             {
-            "Name" = "8:DS Backup"
+            "Name" = "8:Dark Souls Save Backup Tool"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -400,7 +392,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CB2836EC2DE84CE9BEF80FBC3D03A3D7"
             {
-            "Name" = "8:DS Backup"
+            "Name" = "8:Dark Souls Save Backup Tool"
             "Arguments" = "8:-hide"
             "Description" = "8:"
             "ShowCmd" = "3:1"

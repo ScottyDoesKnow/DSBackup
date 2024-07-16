@@ -6,24 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DSBackup
+namespace Net.ScottyDoesKnow.DsBackup.Helpers
 {
-    public static class XmlHelper
+    internal static class XmlHelper
     {
-        public static T FromXML<T>(string xml)
+        public static T FromXml<T>(string xml)
         {
-            using (StringReader stringReader = new StringReader(xml))
+            using (var stringReader = new StringReader(xml))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                var serializer = new XmlSerializer(typeof(T));
                 return (T)serializer.Deserialize(stringReader);
             }
         }
 
-        public static string ToXML<T>(T obj)
+        public static string ToXml<T>(T obj)
         {
-            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
+            using (var stringWriter = new StringWriter(new StringBuilder()))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                var xmlSerializer = new XmlSerializer(typeof(T));
                 xmlSerializer.Serialize(stringWriter, obj);
                 return stringWriter.ToString();
             }

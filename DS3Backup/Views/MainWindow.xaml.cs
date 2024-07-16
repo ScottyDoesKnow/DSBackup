@@ -12,34 +12,32 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Net.ScottyDoesKnow.DsBackup.ViewModels;
 
-namespace DSBackup
+namespace Net.ScottyDoesKnow.DsBackup.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel vm;
+        private readonly MainWindowViewModel _viewModel;
 
         public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
 
-            vm = mainWindowViewModel;
-            vm.CloseAction = Close;
-            DataContext = vm;
+            _viewModel = mainWindowViewModel;
+            _viewModel.CloseAction = Close;
+            DataContext = _viewModel;
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
 
-            if (!vm.AllowExit)
-            {
-                e.Cancel = true;
-                vm.Visibility = Visibility.Hidden;
-            }
+            if (_viewModel.AllowExit)
+                return;
+
+            e.Cancel = true;
+            _viewModel.Visibility = Visibility.Hidden;
         }
     }
 }

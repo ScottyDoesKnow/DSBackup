@@ -5,14 +5,15 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Net.ScottyDoesKnow.DsBackup.ViewModels;
+using Net.ScottyDoesKnow.DsBackup.Views;
 
-namespace DSBackup
+namespace Net.ScottyDoesKnow.DsBackup
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public const string ApplicationName = "Dark Souls Save Backup Tool";
+
         protected override void OnStartup(StartupEventArgs e)
         {
             try
@@ -24,8 +25,8 @@ namespace DSBackup
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Current.Shutdown(); // Why is this needed??
+                MessageBox.Show($"{ex.Message}{Environment.NewLine}{Environment.NewLine}{ex.StackTrace}", ApplicationName, MessageBoxButton.OK, MessageBoxImage.Error);
+                Current.Shutdown();
             }
         }
     }
