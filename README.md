@@ -5,3 +5,4 @@ Backs up Dark Souls, Dark Souls II, Dark Souls III, Dark Souls Remastered, and E
 * Checks every 15 minutes and creates up to 10 backups.
 * Only creates a backup if the modified date has changed.
 
+![Screenshot of the user interface.](https://github.com/user-attachments/assets/f3691d7c-90bb-48dc-85cb-e906f18dc537)
